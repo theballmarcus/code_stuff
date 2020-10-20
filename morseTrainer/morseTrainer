@@ -1,11 +1,11 @@
 
+#!/usr/bin/env python3
 # 
 #              Program written by: Marcus, cloned from rep: https://github.com/theballmarcus/math_solutions
 #              Feel free to use this code, but I would appreciate keeping the repo link in the top of the file.
 #
 
 
-#!/usr/bin/env python3
 import random
 import time
 import sys
