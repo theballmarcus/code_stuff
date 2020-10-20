@@ -1,4 +1,4 @@
-# math_solutions
+# code_stuff
 
 
  This repo is just a bunch of random math problems solved. You can use the command 
