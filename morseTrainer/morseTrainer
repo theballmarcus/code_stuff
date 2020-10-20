@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+import random
+import time
+import sys
+
+printInputMorse = True
+
+morseAlphabet = {
+    "alphabet" : {
+        "a" : ".-",
+        "b" : "-...",
+        "c" : "-.-.",
+        "d" : "-..",
+        "e" : ".",
+        "f" : "..-.",
+        "g" : "--.",
+        "h" : "....",
+        "i" : "..",
+        "j" : ".---",
+        "k" : "-.-",
+        "l" : ".-..",
+        "m" : "--",
+        "n" : "-.",
+        "o" : "---",
+        "p" : ".--.",
+        "q" : "--.-",
+        "r" : ".-.",
+        "s" : "...",
+        "t" : "-",
+        "u" : "..-",
+        "v" : "...-",
+        "w" : ".--",
+        "x" : "-..-",
+        "y" : "-.--",
+        "z" : "--.."
+    },
+    "numbers" : {
+        "0" : ".----",
+        "1" : "..---",
+        "2" : "...--",
+        "3" : "....-",
+        "4" : ".....",
+        "5" : "-....",
+        "6" : "--...",
+        "7" : "---..",
+        "8" : "----.",
+        "9" : "-----"
+    }
+}
+
+running = None
+
+print("Welcome to a morse trainer by Theballmarcus")
+print("Select weather you want to write the answer in morse (1), alphabet (2), or random (3)")
+print("[1, 2, or 3] ", end="")
+gamemode = input()
+
+modes = {"" : "alphabet", "1" : "alphabet", "2" : "numbers", "3" : "random"}
+trainingModes = {"" : "alphabet", "1" : "alphabet", "2" : "numbers", "3" : "random"}
+
+user = {
+    "mode" : "",
+    "training" : ""
+}
+
+if gamemode not in modes:
+    print("------------------------------------------------")
+    print("You have to select one of the gamemodes.")
+    running = False
+    sys.exit()
+else: 
+    running = True
+    user["mode"] = modes[gamemode]
+    
+
+#print("Choose if you want to train the alphatbet (1), numbers (2), or random (3)")
+#print("[1, 2, or 3]", end="")
+#training = input()
+#if training not in modes:
+#    print("------------------------------------------------")
+#    print("You gotta select one of the following gamemodes.")
+#    running = False
+#    exit()
+#else: 
+#    running = True
+#    user["training"] = modes[gamemode]
+
+
+print(f"Now training ")
+print("----------------------------------------------------")
+
+running = True
+alphaValues = []
+alphaKeys = []
+numberValues = []
+numberKeys = []
+
+for key, value in morseAlphabet['alphabet'].items():
+    alphaValues.append(value)
+    alphaKeys.append(key)
+for key, value in morseAlphabet['numbers'].items():
+    numberValues.append(value)
+    numberKeys.append(key)
+
+#print(values)
+#print(alphaKeys)
+
+alphaRandom = None
+numberRandom = None
+randomNumber = None
+lastAnswer = False
+
+while running:
+    if lastAnswer == False:
+        if user["mode"] == "random": randomNumber = random.randint(0, 1)
+        alphaRandom = random.randint(0, len(alphaKeys)-1)
+        numberRandom = random.randint(0, len(numberKeys)-1)
+
+        answerValue = 0
+        answerKey = 0
+
+    if user["mode"] == "random":
+        if randomNumber == 0:
+            answerValue = alphaValues[alphaRandom]
+            answerKey = alphaKeys[alphaRandom]
+        else:
+            answerValue = numberValues[numberRandom]
+            answerKey = alphaKeys[numberRandom]
+    elif user["mode"] == "alphabet":
+        answerValue = alphaValues[alphaRandom]
+        answerKey = alphaKeys[alphaRandom]
+    else: 
+        answerNumbers = numberValues[numberRandom]
+        answerKey = numberKeys[numberRandom]
+    print(f"{answerKey}: ", end="")
+    answer = input()
+    if answer == "exit" or answer == "quit": sys.exit()
+    if answerValue != answer:
+        print(f"Wrong answer. The correct answer would be: {answerValue}")
+        lastAnswer = True
+        if printInputMorse:
+            for i in range(len(alphaValues)):
+                if answer == alphaValues[i]:
+                    print(f"Your answer is also {alphaKeys[i]}")
+                    break
+            for i in range(len(numberValues)):
+                if answer == numberValues[i]:
+                    print(f"Your answer is also {numberKeys[i]}")
+                    break
+    else:
+        print("Correct! Next one!")
+        lastAnswer = False
+    print("\n\n", end="")
