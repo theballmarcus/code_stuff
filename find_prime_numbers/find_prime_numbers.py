@@ -1,5 +1,5 @@
 # 
-#              Program written by: Marcus, cloned from rep: https://github.com/theballmarcus/math_solutions
+#              Program written by: Marcus, cloned from rep: https://github.com/theballmarcus/code_stuff
 #              Feel free to use this code, but I would appreciate keeping the repo link in the top of the file.
 #
 
